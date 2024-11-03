@@ -22,7 +22,7 @@ Note:
 
 ## Installation Process
 Below are the steps that need to be done to successfully launch QEMU. The files can be downloaded [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html). Please note that AMD will ask for an account registration (free) to allow downloading the files.
-1. Download Petalinx Tools Installer v2024.1.
+1. Download Petalinux Tools Installer v2024.1.
 2. Download ZCU102 BSP. Prebuilt Board Support Package for ZCU102 evaluation board based on Zynq Ultrascale+ MPSOC is used in this repo.
 3. Place the downloaded files under libaries/qemu, or create a new directory and change the path in the corresponding lines in docker_build.sh and Dockerfile scripts.
 4. Run docker_build.sh script. If there is any error during installation, refer to [Installation Prerequisites](#installation-prerequisites) subsection.
@@ -33,7 +33,14 @@ Below are the steps that need to be done to successfully launch QEMU. The files 
 ```
 
 ## Launching QEMU
-TODO: Work in progress...
+1. Run the docker image as in [Run docker](#run-docker).
+2. Create a petalinux project using the prebuilt bsp located in ./libraries/qemu. Below is the example command with zcu102 bsp and a project folder name of 'xilinx-qemu':
+```
+petalinux-create project -s ./libraries/qemu/xilinx-zcu102-v2024.1-05230256.bsp -n xilinx-qemu
+```
+3. After the project is created, run ```cd xilinx-qemu```.
+4. Boot the qemu from inside the project: ```petalinux-boot qemu --prebuilt 3```. There are different boot levels ranging from 1-3, here ```--prebuilt 3``` is used since the bsp contains the prebuilt 'linux'. It will take a while to finish the booting process.
+5. When booting is completed, it will ask for login credentials. Enter 'petalinux' since it is the username created in this repo's docker image, then create new password upon prompting. Now the process of launching QEMU with prebuilt linux is successful.
 
 ### Run docker
 ```
