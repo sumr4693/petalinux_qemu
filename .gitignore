@@ -1,0 +1,4 @@
+libraries/qemu/*.run
+libraries/qemu/*.bsp
+
+.vscode/

@@ -1,0 +1,8 @@
+etc/**
+installers/**
+docker-build.sh
+README.md
+.gitignore
+.git
+.cache
+tftpboot/
